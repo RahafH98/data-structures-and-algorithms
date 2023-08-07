@@ -10,19 +10,4 @@ public class ReverseArray {
         return reversedArray;
     }
 
-    public static void main(String[] args) {
-        int[] inputArray = {1, 2, 3, 4, 5};
-        int[] reversedArray = reverseArray(inputArray);
-
-        System.out.println("Original Array:");
-        for (int num : inputArray) {
-            System.out.print(num + " ");
-        }
-        System.out.println();
-
-        System.out.println("Reversed Array:");
-        for (int num : reversedArray) {
-            System.out.print(num + " ");
-        }
-    }
-}
+   
