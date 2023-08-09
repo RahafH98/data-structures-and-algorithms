@@ -1,0 +1,13 @@
+
+public class ReverseArray {
+    public static int[] reverseArray(int[] inputArray) {
+        int[] reversedArray = new int[inputArray.length];
+
+        for (int i = 0; i < inputArray.length; i++) {
+            reversedArray[i] = inputArray[inputArray.length - 1 - i];
+        }
+
+        return reversedArray;
+    }
+
+   
