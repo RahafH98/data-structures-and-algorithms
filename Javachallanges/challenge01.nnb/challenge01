@@ -1,5 +1,7 @@
 
-public class ReverseArray {
+
+
+public class Challenge01 {
     public static int[] reverseArray(int[] inputArray) {
         int[] reversedArray = new int[inputArray.length];
 
@@ -9,5 +11,17 @@ public class ReverseArray {
 
         return reversedArray;
     }
+
+    public static void main(String[] args) {
+        int[] inputArray = {1, 2, 3, 4, 5};
+
+        System.out.println("Input Array: " + java.util.Arrays.toString(inputArray));
+
+        int[] reversedArray = reverseArray(inputArray);
+
+        System.out.println("Reversed Array: " + java.util.Arrays.toString(reversedArray));
+    }
+}
+
 
    
