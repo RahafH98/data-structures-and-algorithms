@@ -3,5 +3,5 @@
 
 | Challenge   | link     | 
 |-------------|------------|
-| Challenge 1 |                            | 
-| challenge 2 |                            |
+| Challenge 1 |        ` https://rahafh98.github.io/data-structures-and-algorithms/   `                  | 
+| challenge 2 |                                                                                          |
