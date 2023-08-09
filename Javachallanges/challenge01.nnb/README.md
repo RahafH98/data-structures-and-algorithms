@@ -1,6 +1,6 @@
 # data-structures-and-algorithms
 
-## Code Challenge
+## Code Challenge 01 
 
 | Challenge   | Status     | description |
 |-------------|------------| -------------|
