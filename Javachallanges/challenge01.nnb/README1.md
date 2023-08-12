@@ -20,31 +20,3 @@ big O(n)
 
 ## Solution
 ![Alt text](Capture.JPG)     ![Alt text](<test 1.JPG>)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
