@@ -4,7 +4,8 @@ the code should help the user to insert into the list and look for value inside 
 to check where is the head and check the values inside the list.
 
 ## Whiteboard Process
-<!-- Embedded whiteboard image -->
+![cc5 drawio](https://github.com/RahafH98/data-structures-and-algorithms/assets/116943532/d57cb3b7-50e5-4dc0-9ce0-d295216f6ebb)
+
 
 ## Approach & Efficiency
 *Approach*
