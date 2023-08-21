@@ -4,8 +4,10 @@ the code should help the user to insert into the list and look for value inside 
 to check where is the head and check the values inside the list.
 
 ## Whiteboard Process
+
 ![cc5.drawio.png](cc5.drawio.png)
 ![cc5.jpg](cc5.jpg)
+
 ## Approach & Efficiency
 *Approach*
 1. Single Responsibility Principle (SRP): The classes (LinkedList, Node) follow the SRP by having distinct responsibilities. LinkedList manages the linked list operations, and Node represents the individual elements.
