@@ -9,4 +9,12 @@ public class Node {
         this.value = value;
         this.Next=null;
     }
+
+    public Node getNext() {
+        return Next;
+    }
+
+    public void setNext(Node Next) {
+        this.Next = Next;
+    }
 }
