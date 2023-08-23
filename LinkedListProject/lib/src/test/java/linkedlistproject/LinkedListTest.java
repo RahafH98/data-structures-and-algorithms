@@ -11,14 +11,18 @@ public class LinkedListTest {
         assertEquals("Null", list.toString(), "Empty list should return 'Null'");
     }
 
+
     @Test
     public void testInsertIntoLinkedList() {
         LinkedList list = new LinkedList();
         list.insert(10);
-        assertEquals("{10} ->Null", list.toString(), "List after insertion should match expected");
+        String expected = "{10} -> Null";
+        String actual = list.toString();
+        assertEquals(expected, actual, "List after insertion should match expected");
     }
 
-    @Test
+
+@Test
     public void testHeadPointsToFirstNode() {
         LinkedList list = new LinkedList();
         list.insert(10);
@@ -31,8 +35,10 @@ public class LinkedListTest {
         LinkedList list = new LinkedList();
         list.insert(10);
         list.insert(20);
-        assertEquals("{20} ->{10} ->Null", list.toString(), "List after multiple insertions should match expected");
+        assertEquals("{10} -> {20} -> Null", list.toString(), "List after multiple insertions should match expected");
     }
+
+
 
     @Test
     public void testContainsExistingValue() {
@@ -75,6 +81,7 @@ public class LinkedListTest {
         list.insertBefore(30, 20);
         assertEquals("{50} ->{20} ->{30} ->{10} ->Null", list.toString(), "List after inserting before middle node should match expected");
     }
+
 
     @Test
     public void testInsertBeforeFirstNode() {
@@ -143,4 +150,68 @@ public class LinkedListTest {
         list.delete(40);
         assertEquals("{30} ->{20} ->{10} ->Null", list.toString(), "List should remain unchanged after attempting to delete non-existing node");
     }
+
+    @Test
+    public void testKthFromEnd_GreaterThanLength() {
+        LinkedList list = new LinkedList();
+        list.append(1);
+        list.append(2);
+        list.append(3);
+
+        assertThrows(IllegalArgumentException.class, () -> list.kthFromEnd(4));
+    }
+
+    @Test
+    public void testKthFromEnd_SameAsLength() {
+        LinkedList list = new LinkedList();
+        list.append(1);
+        list.append(2);
+        list.append(3);
+
+        assertThrows(IllegalArgumentException.class, () -> list.kthFromEnd(3));
+    }
+
+    @Test
+    public void testKthFromEnd_NegativeK() {
+        LinkedList list = new LinkedList();
+        list.append(1);
+        list.append(2);
+        list.append(3);
+
+        assertThrows(IllegalArgumentException.class, () -> list.kthFromEnd(-1));
+    }
+
+    @Test
+    public void testKthFromEnd_Size1() {
+        LinkedList list = new LinkedList();
+        list.append(1);
+
+        assertEquals(1, list.kthFromEnd(0));
+    }
+
+    @Test
+    public void testKthFromEnd_HappyPath() {
+        LinkedList list = new LinkedList();
+        list.append(1);
+        list.append(2);
+        list.append(3);
+        list.append(4);
+        list.append(5);
+
+        assertEquals(3, list.kthFromEnd(2));
+    }
+
+    @Test
+    public void testKthFromEnd_MiddleElement() {
+        LinkedList list = new LinkedList();
+        list.append(1);
+        list.append(2);
+        list.append(3);
+        list.append(4);
+        list.append(5);
+
+        assertEquals(2, list.kthFromEnd(3));
+    }
+
+
 }
