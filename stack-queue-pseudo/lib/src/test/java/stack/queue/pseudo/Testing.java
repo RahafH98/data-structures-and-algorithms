@@ -1,5 +1,7 @@
 package stack.queue.pseudo;
 
+
+
 import stack.queue.pseudo.CustomStack;
 import stack.queue.pseudo.PseudoQueue;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PseudoQueueTest {
+public class Testing {
 
     private PseudoQueue<Integer> pseudoQueue;
 
@@ -88,4 +90,5 @@ public class PseudoQueueTest {
         assertTrue(stack.isEmpty());
     }
 }
+
 
