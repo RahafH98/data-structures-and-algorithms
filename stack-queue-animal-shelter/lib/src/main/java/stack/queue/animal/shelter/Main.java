@@ -10,7 +10,7 @@ public class Main {
 
         System.out.println(shelter.dequeue("dog").name); // Output: Buddy (preferring dog)
         System.out.println(shelter.dequeue("cat").name); // Output: Whiskers (preferring cat)
-        System.out.println(shelter.dequeue("parrot"));     // Output: null (invalid preference)
+        System.out.println(shelter.dequeue("parrot"));    // Output: null (invalid preference)
         System.out.println(shelter.dequeue("any").name);  // Output: Rex (stretch goal: longest waiting)
     }
 }

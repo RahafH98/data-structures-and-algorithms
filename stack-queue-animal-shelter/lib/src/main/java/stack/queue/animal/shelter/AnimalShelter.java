@@ -2,16 +2,18 @@ package stack.queue.animal.shelter;
 
 import java.util.LinkedList;
 import java.util.Queue;
-public class AnimalShelter {
-  private Queue <Animal> dogQueue;
-  private Queue <Animal> catQueue;
-  private int timestamp;
 
-  public AnimalShelter(){
-      dogQueue = new LinkedList<>();
-      catQueue = new LinkedList<>();
-      timestamp = 0 ;
-  }
+public class AnimalShelter {
+    private Queue<Animal> dogQueue;
+    private Queue<Animal> catQueue;
+    private int timestamp;
+
+    public AnimalShelter() {
+        dogQueue = new LinkedList<>();
+        catQueue = new LinkedList<>();
+        timestamp = 0;
+    }
+
     public void enqueue(Animal animal) {
         animal.timestamp = timestamp++;
         if ("dog".equals(animal.species)) {
@@ -34,6 +36,4 @@ public class AnimalShelter {
             return null;
         }
     }
-
-
 }
