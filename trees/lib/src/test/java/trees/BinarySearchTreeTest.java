@@ -98,4 +98,35 @@ public class BinarySearchTreeTest {
         assertFalse(tree.contains(2));
         assertFalse(tree.contains(8));
     }
+    @Test
+    public void testFindMaximumValueSingleNode() {
+        BinarySearchTree tree = new BinarySearchTree();
+        tree.add(5);
+
+        int maxValue = tree.findMaximumValue();
+        assertEquals(5, maxValue);
+    }
+
+    @Test
+    public void testFindMaximumValueMultipleNodes() {
+        BinarySearchTree tree = new BinarySearchTree();
+        tree.add(5);
+        tree.add(3);
+        tree.add(7);
+        tree.add(2);
+        tree.add(8);
+
+        int maxValue = tree.findMaximumValue();
+        assertEquals(8, maxValue);
+    }
+
+    @Test
+    public void testFindMaximumValueEmptyTree() {
+        BinarySearchTree tree = new BinarySearchTree();
+
+
+        assertThrows(IllegalStateException.class, () -> {
+            tree.findMaximumValue();
+        });
+    }
 }
