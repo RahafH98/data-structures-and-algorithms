@@ -1,5 +1,10 @@
 package trees;
 
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 public class BinarySearchTree extends BinaryTree{
     public BinarySearchTree(){
         super();
@@ -34,5 +39,25 @@ public class BinarySearchTree extends BinaryTree{
         } else {
             return  containRecursive(current.Right, value);
         }
+    }
+    public List<Integer> breadthFirst() {
+        List<Integer> result = new ArrayList<>();
+        if (root != null) {
+            Queue<Node> queue = new LinkedList<>();
+            queue.add(root);
+
+            while (!queue.isEmpty()) {
+                Node current = queue.poll();
+                result.add(current.value);
+
+                if (current.Left != null) {
+                    queue.add(current.Left);
+                }
+                if (current.Right != null) {
+                    queue.add(current.Right);
+                }
+            }
+        }
+        return result;
     }
 }
