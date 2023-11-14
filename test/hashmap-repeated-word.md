@@ -1,5 +1,6 @@
-#  hashmap-repeated-word
-Write a function called repeatedWord that finds the first word to occur more than once in a string. The function should take a string as an argument and return the first repeated word in the string.
+#  Tree-Intersection 
+find the intersection of two binary trees and return the set of values that are common in both trees. The binary trees are represented by TreeNode objects, and the goal is to implement a function that follows the Single Responsibility Principle, providing clean, reusable, and abstract components to solve the challenge.
+
 
 
 ## Whiteboard Process
@@ -7,40 +8,27 @@ Write a function called repeatedWord that finds the first word to occur more tha
 ## Approach & Efficiency
 
 # Approach
-Tokenize the Input String:
+Create a HashSet from One Tree:
 
-Split the input string into words. You can use regular expressions or the split method to break the string into words based on spaces and punctuation marks.
-Create a Set to Track Words:
+Implement a method called buildHashSet that takes a TreeNode as input.
+Perform a pre-order traversal of the tree (or any other suitable traversal).
+While traversing the tree, store the encountered values in a HashSet.
+Return the HashSet containing values from the tree.
+Find Common Values:
 
-Initialize an empty set to keep track of unique words encountered in the string.
-Iterate Through Words:
+Implement a method called findCommonValues that takes a TreeNode and a HashSet as input.
+Perform a pre-order traversal of the tree (matching the traversal used in buildHashSet).
+During traversal, check if the encountered values are present in the HashSet.
+If a value is found in the HashSet, add it to another HashSet to store common values.
+Return the HashSet containing common values.
+Main Intersection Operation:
 
-Iterate through the words in the tokenized string.
-For each word, convert it to lowercase (to make the search case-insensitive).
-Check for Repeated Words:
-
-For each word, check if it already exists in the set of unique words.
-If it does, return the word as the first repeated word.
-If not, add the word to the set of unique words.
-Handle the No Repeated Word Case:
-
-If you reach the end of the iteration without finding a repeated word, return an empty string to indicate that there are no repeated words.
-
-
+Create the main treeIntersection method.
+Call the buildHashSet method for one of the binary trees to create a HashSet containing its values.
+Call the findCommonValues method for the other binary tree, passing the HashSet from step 2 as a parameter.
+Return the HashSet containing common values as the result of the intersection.
 
 # Efficiency
-Time Complexity:
-
-Tokenization of the input string has a time complexity of O(n), where 'n' is the length of the input string.
-The loop that iterates through the words has a time complexity of O(n) because each word is processed once.
-HashSet operations (addition and contains) have an average time complexity of O(1).
-Therefore, the overall time complexity of this solution is O(n), where 'n' is the length of the input string.
-
-Space Complexity:
-
-The space complexity is determined by the storage used for the HashSet, which stores unique words.
-In the worst case, where there are no repeated words, the HashSet will store all 'n' words.
-In the best case, where the first word is repeated, the HashSet will store just two words.
-Therefore, the space complexity of this solution can be O(n) in the worst case and O(1) in the best case.
-
+time --> o(1)
+space --> o (n)
 ## Solution
