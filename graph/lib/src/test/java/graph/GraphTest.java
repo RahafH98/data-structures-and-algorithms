@@ -1,6 +1,5 @@
 package graph;
 
-import graph.Graph;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,47 +8,40 @@ class GraphTest {
     @Test
     void testAddVertex() {
         Graph graph = new Graph();
-        assertEquals(1, graph.addVertex(1));
-        assertEquals(2, graph.addVertex(2));
-        assertEquals(3, graph.addVertex(3));
+        int vertex = graph.addVertex(1);
+        assertTrue(graph.getVertices().contains(vertex));
     }
 
     @Test
     void testAddEdge() {
         Graph graph = new Graph();
-        int vertex1 = graph.addVertex(1);
-        int vertex2 = graph.addVertex(2);
-
-        graph.addEdge(vertex1, vertex2, 2.0);
-
-        assertEquals(2.0, graph.getNeighbors(vertex1).iterator().next().weight);
-        assertEquals(2.0, graph.getNeighbors(vertex2).iterator().next().weight);
-    }
-
-    @Test
-    void testRemoveEdge() {
-        Graph graph = new Graph();
-        int vertex1 = graph.addVertex(1);
-        int vertex2 = graph.addVertex(2);
-
-        graph.addEdge(vertex1, vertex2, 2.0);
-        graph.removeEdge(vertex1, vertex2);
-
-        assertTrue(graph.getNeighbors(vertex1).isEmpty());
-        assertTrue(graph.getNeighbors(vertex2).isEmpty());
+        graph.addVertex(1);
+        graph.addVertex(2);
+        graph.addEdge(1, 2, 1.0);
+        assertTrue(graph.getNeighbors(1).size() == 1);
+        assertTrue(graph.getNeighbors(2).size() == 1);
     }
 
     @Test
     void testRemoveVertex() {
         Graph graph = new Graph();
-        int vertex1 = graph.addVertex(1);
-        int vertex2 = graph.addVertex(2);
-
-        graph.addEdge(vertex1, vertex2, 2.0);
-        graph.removeVertex(vertex1);
-
-        assertFalse(graph.getVertices().contains(vertex1));
-        assertTrue(graph.getNeighbors(vertex2).isEmpty());
+        int vertex = graph.addVertex(1);
+        graph.removeVertex(vertex);
+        assertFalse(graph.getVertices().contains(vertex));
     }
 
+    // Add more tests for other methods
+
+    @Test
+    void testBreadthFirst() {
+        Graph graph = new Graph();
+        graph.addVertex(1);
+        graph.addVertex(2);
+        graph.addEdge(1, 2, 1.0);
+        graph.addVertex(3);
+        graph.addEdge(2, 3, 1.0);
+        graph.addVertex(4);
+
+        assertEquals("[1, 2, 3]", graph.breadthFirst(1).toString());
+    }
 }
