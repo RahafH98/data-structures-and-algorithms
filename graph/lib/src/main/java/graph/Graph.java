@@ -1,18 +1,28 @@
 package graph;
 
-
-
 import java.util.*;
 
 class Edge {
-    int source;
-    int destination;
-    double weight;
+    public int source;
+    public int destination;
+    private double weight;
 
     public Edge(int source, int destination, double weight) {
         this.source = source;
         this.destination = destination;
         this.weight = weight;
+    }
+
+    public int getSource() {
+        return source;
+    }
+
+    public int getDestination() {
+        return destination;
+    }
+
+    public double getWeight() {
+        return weight;
     }
 }
 
@@ -30,16 +40,32 @@ public class Graph {
         adjacencyList.put(value, new HashSet<>());
         return value;
     }
+    public List<Integer> getEdges(int vertex) {
+        if (adjacencyList.containsKey(vertex)) {
 
-    public void addEdge(int source, int destination, double weight) {
-        if (!vertices.contains(source) || !vertices.contains(destination)) {
-            throw new IllegalArgumentException("Source or destination vertex does not exist.");
+            List<Edge> edges = (List<Edge>) adjacencyList.get(vertex);
+            List<Integer> destinationVertices = new ArrayList<>();
+
+            for (Edge edge : edges) {
+                destinationVertices.add(edge.getDestination());
+            }
+
+            return destinationVertices;
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+
+    public void addEdge(int vertex1, int vertex2, double weight) {
+        if (!adjacencyList.containsKey(vertex1) || !adjacencyList.containsKey(vertex2)) {
+            throw new IllegalArgumentException("Both vertices must exist in the graph.");
         }
 
-        Edge edge = new Edge(source, destination, weight);
-        adjacencyList.get(source).add(edge);
-        adjacencyList.get(destination).add(edge);
+        adjacencyList.get(vertex1).add(new Edge(vertex1, vertex2, weight));
+        adjacencyList.get(vertex2).add(new Edge(vertex2, vertex1, weight));
     }
+
 
     public void removeVertex(int vertex) {
         if (!vertices.contains(vertex)) {
@@ -49,7 +75,6 @@ public class Graph {
         vertices.remove(vertex);
         adjacencyList.remove(vertex);
 
-        // Remove edges containing the vertex
         for (Set<Edge> edges : adjacencyList.values()) {
             edges.removeIf(edge -> edge.source == vertex || edge.destination == vertex);
         }
@@ -61,7 +86,6 @@ public class Graph {
         }
 
         adjacencyList.get(source).removeIf(edge -> edge.destination == destination);
-        adjacencyList.get(destination).removeIf(edge -> edge.source == source);
     }
 
     public Collection<Integer> getVertices() {
@@ -74,5 +98,33 @@ public class Graph {
 
     public int size() {
         return vertices.size();
+    }
+
+    public Collection<Integer> breadthFirst(int startNode) {
+        if (!vertices.contains(startNode)) {
+            throw new IllegalArgumentException("Start node does not exist.");
+        }
+
+        Set<Integer> visited = new HashSet<>();
+        Queue<Integer> queue = new LinkedList<>();
+        List<Integer> result = new ArrayList<>();
+
+        visited.add(startNode);
+        queue.add(startNode);
+
+        while (!queue.isEmpty()) {
+            int currentVertex = queue.poll();
+            result.add(currentVertex);
+
+            for (Edge edge : adjacencyList.get(currentVertex)) {
+                int neighbor = (edge.source == currentVertex) ? edge.destination : edge.source;
+                if (!visited.contains(neighbor)) {
+                    visited.add(neighbor);
+                    queue.add(neighbor);
+                }
+            }
+        }
+
+        return result;
     }
 }
