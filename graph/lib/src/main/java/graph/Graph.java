@@ -40,10 +40,10 @@ public class Graph {
         adjacencyList.put(value, new HashSet<>());
         return value;
     }
+
     public List<Integer> getEdges(int vertex) {
         if (adjacencyList.containsKey(vertex)) {
-
-            List<Edge> edges = (List<Edge>) adjacencyList.get(vertex);
+            Set<Edge> edges = adjacencyList.get(vertex);
             List<Integer> destinationVertices = new ArrayList<>();
 
             for (Edge edge : edges) {
@@ -56,7 +56,6 @@ public class Graph {
         }
     }
 
-
     public void addEdge(int vertex1, int vertex2, double weight) {
         if (!adjacencyList.containsKey(vertex1) || !adjacencyList.containsKey(vertex2)) {
             throw new IllegalArgumentException("Both vertices must exist in the graph.");
@@ -65,7 +64,6 @@ public class Graph {
         adjacencyList.get(vertex1).add(new Edge(vertex1, vertex2, weight));
         adjacencyList.get(vertex2).add(new Edge(vertex2, vertex1, weight));
     }
-
 
     public void removeVertex(int vertex) {
         if (!vertices.contains(vertex)) {
@@ -126,5 +124,43 @@ public class Graph {
         }
 
         return result;
+    }
+
+    public Integer businessTrip(String[] cities) {
+        int cost = 0;
+
+        for (int i = 0; i < cities.length - 1; i++) {
+            int sourceVertex = findVertex(cities[i]);
+            int targetVertex = findVertex(cities[i + 1]);
+
+            if (sourceVertex == -1 || targetVertex == -1) {
+                return null;
+            }
+
+            boolean directFlightExists = false;
+
+            for (Edge edge : getNeighbors(sourceVertex)) {
+                if (edge.getDestination() == targetVertex) {
+                    directFlightExists = true;
+                    cost += edge.getWeight();
+                    break;
+                }
+            }
+
+            if (!directFlightExists) {
+                return null;
+            }
+        }
+
+        return cost;
+    }
+
+    private int findVertex(String cityName) {
+        for (int vertex : vertices) {
+            if (Integer.toString(vertex).equals(cityName)) {
+                return vertex;
+            }
+        }
+        return -1;
     }
 }
