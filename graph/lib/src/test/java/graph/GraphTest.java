@@ -30,8 +30,6 @@ class GraphTest {
         assertFalse(graph.getVertices().contains(vertex));
     }
 
-    // Add more tests for other methods
-
     @Test
     void testBreadthFirst() {
         Graph graph = new Graph();
@@ -43,5 +41,54 @@ class GraphTest {
         graph.addVertex(4);
 
         assertEquals("[1, 2, 3]", graph.breadthFirst(1).toString());
+    }
+
+    @Test
+    void testBusinessTripValidRoute() {
+        Graph graph = new Graph();
+
+        graph.addVertex(1);
+        graph.addVertex(2);
+        graph.addVertex(3);
+        graph.addEdge(1, 2, 8);
+        graph.addEdge(2, 3, 15);
+
+        String[] validRoute = {"1", "2", "3"};
+        Integer cost = graph.businessTrip(validRoute);
+
+        assertNotNull(cost);
+        assertEquals(23, cost);
+    }
+
+    @Test
+    void testBusinessTripInvalidRoute() {
+        Graph graph = new Graph();
+
+        graph.addVertex(1);
+        graph.addVertex(2);
+        graph.addVertex(3);
+        graph.addEdge(1, 2, 8);
+        graph.addEdge(2, 3, 15);
+
+        String[] invalidRoute = {"1", "3", "2"};
+        Integer cost = graph.businessTrip(invalidRoute);
+
+        assertNull(cost);
+    }
+
+    @Test
+    void testBusinessTripNonExistentCity() {
+        Graph graph = new Graph();
+
+        graph.addVertex(1);
+        graph.addVertex(2);
+        graph.addVertex(3);
+        graph.addEdge(1, 2, 8);
+        graph.addEdge(2, 3, 15);
+
+        String[] nonExistentCityRoute = {"1", "4", "3"};
+        Integer cost = graph.businessTrip(nonExistentCityRoute);
+
+        assertNull(cost);
     }
 }
