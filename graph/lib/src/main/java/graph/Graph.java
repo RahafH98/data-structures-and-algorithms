@@ -126,6 +126,31 @@ public class Graph {
         return result;
     }
 
+    public List<Integer> depthFirst(int startNode) {
+        if (!vertices.contains(startNode)) {
+            throw new IllegalArgumentException("Start node does not exist.");
+        }
+
+        List<Integer> result = new ArrayList<>();
+        Set<Integer> visited = new HashSet<>();
+
+        depthFirstTraversal(startNode, visited, result);
+
+        return result;
+    }
+
+    private void depthFirstTraversal(int currentVertex, Set<Integer> visited, List<Integer> result) {
+        visited.add(currentVertex);
+        result.add(currentVertex);
+
+        for (Edge edge : adjacencyList.get(currentVertex)) {
+            int neighbor = (edge.source == currentVertex) ? edge.destination : edge.source;
+            if (!visited.contains(neighbor)) {
+                depthFirstTraversal(neighbor, visited, result);
+            }
+        }
+    }
+
     public Integer businessTrip(String[] cities) {
         int cost = 0;
 
