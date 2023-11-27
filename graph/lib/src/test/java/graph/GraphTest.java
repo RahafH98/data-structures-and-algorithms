@@ -44,6 +44,19 @@ class GraphTest {
     }
 
     @Test
+    void testDepthFirst() {
+        Graph graph = new Graph();
+        graph.addVertex(1);
+        graph.addVertex(2);
+        graph.addEdge(1, 2, 1.0);
+        graph.addVertex(3);
+        graph.addEdge(2, 3, 1.0);
+        graph.addVertex(4);
+
+        assertEquals("[1, 2, 3]", graph.depthFirst(1).toString());
+    }
+
+    @Test
     void testBusinessTripValidRoute() {
         Graph graph = new Graph();
 
